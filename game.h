@@ -14,5 +14,7 @@ typedef struct {
 void game_init(Game *g);
 int  game_apply_move(Game *g, const Move *m);  /* returns boxes completed */
 int  game_over(const Game *g);
+void game_print_scores(const Game *g);
+void game_print_result(const Game *g);
 
 #endif
