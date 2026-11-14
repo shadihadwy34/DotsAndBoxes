@@ -1,13 +1,13 @@
-CC = gcc
+CC     = gcc
 CFLAGS = -Wall -Wextra -g
 
-OBJS = main.o board.o
+OBJS   = main.o board.o input.o
 TARGET = dotsandboxes
 
 $(TARGET): $(OBJS)
 	$(CC) $(CFLAGS) -o $@ $(OBJS)
 
-%.o: %.c board.h
+%.o: %.c board.h input.h
 	$(CC) $(CFLAGS) -c $<
 
 clean:
