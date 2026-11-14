@@ -1,4 +1,7 @@
+#include <stdio.h>
 #include "game.h"
+
+#define SEPARATOR "******************************************************************************"
 
 static int box_complete(const Board *b, int r, int c)
 {
@@ -56,4 +59,25 @@ int game_apply_move(Game *g, const Move *m)
 int game_over(const Game *g)
 {
     return g->boxes_claimed == BOX_ROWS * BOX_COLS;
+}
+
+void game_print_scores(const Game *g)
+{
+    printf("%s\n", SEPARATOR);
+    printf("Player A score: %d\n", g->score_a);
+    printf("Player B score: %d\n", g->score_b);
+    printf("%s\n", SEPARATOR);
+}
+
+void game_print_result(const Game *g)
+{
+    printf("Game over!\n");
+    printf("Final score - Player A: %d, Player B: %d\n", g->score_a, g->score_b);
+
+    if (g->score_a > g->score_b)
+        printf("Player A wins!\n");
+    else if (g->score_b > g->score_a)
+        printf("Player B wins!\n");
+    else
+        printf("It's a tie!\n");
 }
