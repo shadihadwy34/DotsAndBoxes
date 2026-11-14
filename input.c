@@ -37,4 +37,18 @@ MoveStatus read_move(const Board *b, Move *m)
     char buf[128];
 
     if (fgets(buf, sizeof buf, stdin) == NULL)
-        return
+        return MOVE_EOF;
+
+    return parse_move(buf, b, m);
+}
+
+const char *move_status_msg(MoveStatus s)
+{
+    switch (s) {
+    case MOVE_BAD_FORMAT:   return "Invalid input. Enter four numbers: r1 c1 r2 c2.";
+    case MOVE_OUT_OF_RANGE: return "Dot out of range. Rows are 0-4, columns are 0-5.";
+    case MOVE_NOT_ADJACENT: return "Dots must be adjacent (same row or same column, one step apart).";
+    case MOVE_TAKEN:        return "That line is already drawn.";
+    default:                return "";
+    }
+}
